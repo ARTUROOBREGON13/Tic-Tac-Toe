@@ -1,11 +1,9 @@
 <div class="container">
   <h1>Tic-Tac-Toe</h1>
 
-  <!-- Game Selector -->
-  <select [(ngModel)]="gameMode" (change)="onGameModeChange()">
-    <option value="local">Local Game</option>
-    <option value="online">Online Game</option>
-  </select>
+  <!-- Botón para comenzar el juego -->
+  <button class="button-local-game" (click)="onGameModeChange('local')">Start Local Game</button>
+  <button class="button-online-game" (click)="onGameModeChange('online')">Start Online Game</button>
 
   <!-- Input for online game -->
   <div class="connection-check" *ngIf="gameMode === 'online'">
@@ -23,8 +21,6 @@
   <!-- Mensaje opcional (ejemplo para mensajes de error) -->
   <div *ngIf="message" class="message">{{ message }}</div>
 
-  <!-- Botón para comenzar el juego -->
-  <button (click)="startGame()">Start Game</button>
 
 </div>
 

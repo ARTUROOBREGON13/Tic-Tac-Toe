@@ -10,11 +10,10 @@ body {
 }
 
 .container {
-  max-width: 600px;
   margin: 0 auto;
   margin-bottom: 10px;
-  padding: 40px;
-  background-color: #fff;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -22,7 +21,7 @@ body {
 
 h1 {
   font-size: 2rem;
-  color: #007bff;
+  color: #000;
   margin: 10px;
 }
 
@@ -32,21 +31,6 @@ select {
   border: 2px solid #007bff;
   border-radius: 8px;
   margin-right: 10px;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
 }
 
 .message {
@@ -70,17 +54,25 @@ button:hover {
 }
 
 button {
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
+  background: linear-gradient(to bottom right, #DC3545, #ff6a00);
   border: none;
-  border-radius: 4px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
   cursor: pointer;
-  font-size: 1rem;
+  border-radius: 5px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.button-local-game {
+  background: linear-gradient(to bottom right, #007bff, #87CEFA); /* Azul */
+}
+
+.button-start-game {
+  background: linear-gradient(to bottom right, #ee0979, #ff6a00); /* Naranja */
 }
 
 .connection-status {

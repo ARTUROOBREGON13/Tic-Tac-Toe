@@ -18,9 +18,13 @@ export class AppComponent {
   message: string = '';
   gameStarted: boolean = false;
 
-  onGameModeChange() {
+  onGameModeChange(gameMode:string) {
+    this.gameMode = gameMode;
     this.gameStarted = false;
     this.message = '';
+    if (gameMode == 'local') {
+      this.startGame();
+    }
   }
 
   checkConnection() {
@@ -33,7 +37,8 @@ export class AppComponent {
 
     socket.onopen = () => {
       this.connectionStatus = true;
-      socket.close(); // Cerramos la conexión después de probarla
+      socket.close();
+      this.startGame();
     };
 
     socket.onerror = (error) => {

@@ -2,10 +2,10 @@
     width: 100px;
     height: 100px;
     background-color: #fff;
-    border: 2px solid #007bff;
+    border: 2px solid #2C363F;
     font-size: 2rem;
     font-weight: bold;
-    color: #007bff;
+    color: #87CEFA;
     text-align: center;
     line-height: 100px;
     cursor: pointer;
@@ -14,14 +14,14 @@
   }
   
   .square:hover {
-    background-color: #007bff;
+    background-color: #87CEFA;
     color: #fff;
   }
   
   .square.x {
-    color: #dc3545; /* Red for X */
+    color: #DC3545; /* Red for X */
   }
   
   .square.o {
-    color: #28a745; /* Green for O */
+    color: #218838; /* Green for O */
   }
