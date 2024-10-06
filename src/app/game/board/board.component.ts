@@ -8,7 +8,7 @@ import { SquareComponent } from '../square/square.component';
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
   standalone: true,
-  imports: [CommonModule, SquareComponent]
+  imports: [CommonModule, SquareComponent],
 })
 export class BoardComponent {
   squares: string[] = Array(9).fill(null);
@@ -17,6 +17,7 @@ export class BoardComponent {
 
   @Input() isOnline: boolean = false;
   @Input() serverUrl: string = '';
+  playersReady: boolean = false;
 
   constructor(private onlineGameService: OnlineGameService) {}
 
@@ -26,7 +27,9 @@ export class BoardComponent {
 
       // Suscription for incoming moves
       this.onlineGameService.message$.subscribe((message: any) => {
-        this.handleIncomingMove(message.moveIndex, message.symbol);
+        if (message.type == 'start') this.playersReady = true;
+        else if (message.type == 'reset') this.reset(false);
+        else this.handleIncomingMove(message.moveIndex, message.symbol);
       });
     }
   }
@@ -34,8 +37,7 @@ export class BoardComponent {
   makeMove(index: number) {
     if (!this.squares[index] && !this.winner) {
       if (this.isOnline) {
-        // Allows only the user moves
-        this.onlineGameService.sendMove(index);
+        if (this.playersReady) this.onlineGameService.sendMove(index);
       } else {
         this.localMove(index);
       }
@@ -76,7 +78,11 @@ export class BoardComponent {
     return null;
   }
 
-  reset() {
+  reset(sendSignal = true) {
+    if(this.isOnline && sendSignal) {
+      this.onlineGameService.reset();
+      return
+    }
     this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true;

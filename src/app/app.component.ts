@@ -14,25 +14,39 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   gameMode: string = 'local';
   serverUrl: string = '';
-  isConnected: boolean = false;
+  connectionStatus: boolean = false;
   message: string = '';
   gameStarted: boolean = false;
 
   onGameModeChange() {
-    this.isConnected = this.gameMode === 'local';
+    this.gameStarted = false;
+    this.message = '';
   }
 
-  connectToServer() {
-    if (this.serverUrl) {
-      // Aquí se podría validar la conexión al servidor WebSocket
-      this.isConnected = true;
+  checkConnection() {
+    if (!this.serverUrl) {
+      this.message = 'Please, input the Server Address';
+      return;
     }
+
+    const socket = new WebSocket(this.serverUrl);
+
+    socket.onopen = () => {
+      this.connectionStatus = true;
+      socket.close(); // Cerramos la conexión después de probarla
+    };
+
+    socket.onerror = (error) => {
+      this.message = 'Connection could not be established';
+      this.connectionStatus = false;
+    };
   }
 
   startGame() {
-    console.log(this.gameMode, this.isConnected, this.gameMode === 'local' || (this.gameMode === 'online' && this.isConnected))
-    if (this.gameMode === 'local' || (this.gameMode === 'online' && this.isConnected)) this.gameStarted = true;
-    else {
+    if (this.gameMode === 'local' || (this.gameMode === 'online' && this.connectionStatus)) {
+      this.gameStarted = true;
+      this.message = "";
+    } else {
       this.message = 'Please check your connection to the server or change the game mode to local';
     }
   }

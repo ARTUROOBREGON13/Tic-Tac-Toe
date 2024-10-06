@@ -6,10 +6,9 @@
   </app-square>
 </div>
 
-<div *ngIf="winner" class="winner-message">Winner: {{ winner }}!</div>
-
-<div class="reset-button-container">
-  <button class="reset-button" *ngIf="winner" (click)="reset()">
+<div class="reset-button-container" *ngIf="winner">
+  <div class="winner-message">Winner: {{ winner }}!</div>
+  <button class="reset-button" (click)="reset()">
     Reset Game
   </button>
 </div>

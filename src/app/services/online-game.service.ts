@@ -30,10 +30,13 @@ export class OnlineGameService {
           console.log(`It's ${this.currentTurn}'s Turn`);
           break;
 
+          
         case 'move':
-          this.messageSubject.next(message); // Handles the turn/move made by player
+        case 'start':
+        case 'reset':
+            this.messageSubject.next(message); // Either Notifies that the game started, handles the turn/move made by player or resets boards
           break;
-
+        
         default:
           console.log(message.message); // Other messages
           break;
@@ -48,5 +51,10 @@ export class OnlineGameService {
     } else {
       console.log("It's not your turn");
     }
+  }
+
+  reset(){
+    const message = { type: 'reset' };
+    this.socket.send(JSON.stringify(message));
   }
 }
