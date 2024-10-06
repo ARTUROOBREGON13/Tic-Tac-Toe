@@ -1,0 +1,15 @@
+<div class="board">
+  <app-square
+    *ngFor="let square of squares; let i = index"
+    [value]="square"
+    (click)="makeMove(i)">
+  </app-square>
+</div>
+
+<div *ngIf="winner" class="winner-message">¡Ganador: {{ winner }}!</div>
+
+<div class="reset-button-container">
+  <button class="reset-button" *ngIf="winner" (click)="reset()">
+    Reiniciar Juego
+  </button>
+</div>

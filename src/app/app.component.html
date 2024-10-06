@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Tic-Tac-Toe</h1>
+
+  <!-- Selector de tipo de juego -->
+  <select [(ngModel)]="gameMode">
+    <option value="local">Local Game</option>
+    <option value="online">Online Game</option>
+  </select>
+
+  <!-- Input para ingresar la dirección del servidor cuando se selecciona "online" -->
+  <div *ngIf="gameMode === 'online'">
+    <input [(ngModel)]="serverUrl" placeholder="Server Address" />
+  </div>
+
+  <!-- Botón para comenzar el juego -->
+  <button (click)="startGame()">Start Game</button>
+
+  <!-- Mensaje opcional (ejemplo para mensajes de error) -->
+  <div *ngIf="message" class="message">{{ message }}</div>
+</div>
+
+<!-- Componente del tablero -->
+<app-board *ngIf="gameStarted"></app-board>
