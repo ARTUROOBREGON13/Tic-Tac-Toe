@@ -1,28 +1,30 @@
-<div class="container">
-  <h1>Tic-Tac-Toe</h1>
+<div class="main-content">
+  <div class="container">
+    <h1>Tic-Tac-Toe</h1>
 
-  <!-- Botón para comenzar el juego -->
-  <button class="button-local-game" (click)="onGameModeChange('local')">Start Local Game</button>
-  <button class="button-online-game" (click)="onGameModeChange('online')">Start Online Game</button>
+    <!-- Botón para comenzar el juego -->
+    <button class="button-local-game" (click)="onGameModeChange('local')">Start Local Game</button>
+    <button class="button-online-game" (click)="onGameModeChange('online')">Start Online Game</button>
 
-  <!-- Input for online game -->
-  <div class="connection-check" *ngIf="gameMode === 'online'">
-      <label for="server-url">Server Address:</label>
-      <input type="text" id="server-url" [(ngModel)]="serverUrl" placeholder="ws://localhost:8080" />
-    
-      <button (click)="checkConnection()">Test Connection</button>
-    
-      <!-- Shows checkmark for game -->
-      <label *ngIf="connectionStatus" class="connection-status">
-        &#9989;
-      </label>
+    <!-- Input for online game -->
+    <div class="connection-check" *ngIf="gameMode === 'online'">
+        <label for="server-url">Server Address:</label>
+        <input type="text" id="server-url" [(ngModel)]="serverUrl" placeholder="ws://localhost:8080" />
+      
+        <button (click)="checkConnection()">Test Connection</button>
+      
+        <!-- Shows checkmark for game -->
+        <label *ngIf="connectionStatus" class="connection-status">
+          &#9989;
+        </label>
+    </div>
+
+    <!-- Mensaje opcional (ejemplo para mensajes de error) -->
+    <div *ngIf="message" class="message">{{ message }}</div>
+
+
   </div>
 
-  <!-- Mensaje opcional (ejemplo para mensajes de error) -->
-  <div *ngIf="message" class="message">{{ message }}</div>
-
-
+  <!-- Componente del tablero -->
+  <app-board *ngIf="gameStarted" [isOnline]="gameMode === 'online'" [serverUrl]="serverUrl"></app-board>
 </div>
-
-<!-- Componente del tablero -->
-<app-board *ngIf="gameStarted" [isOnline]="gameMode === 'online'" [serverUrl]="serverUrl"></app-board>

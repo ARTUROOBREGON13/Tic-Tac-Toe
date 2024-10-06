@@ -9,11 +9,18 @@ body {
   height: 100vh;
 }
 
+.main-content {
+  padding: 100px;
+  background: radial-gradient(lightskyblue, #e0e0e0);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
 .container {
   margin: 0 auto;
   margin-bottom: 10px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #addaf6;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -62,7 +69,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 4px 7px;
   cursor: pointer;
   border-radius: 5px;
 }
