@@ -61,8 +61,3 @@ ng serve
 ## Customization
 
 You can customize the game by editing the styles in the `src/app/` folder or modifying the game logic in the board component.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
